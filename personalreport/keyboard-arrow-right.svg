@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="7.5" height="12" viewBox="0 0 7.5 12">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #0066FF;
+      }
+    </style>
+  </defs>
+  <path id="keyboard-arrow-right" class="cls-1" d="M366.507,255.923l4.636-4.59-4.636-4.59,1.427-1.41,6.073,6-6.073,6Z" transform="translate(-366.507 -245.333)"/>
+</svg>

@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="keywords" content="上海外服,健康指数系统" />
+    <meta name="description" content="上海外服健康指数系统。" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <title>上海外服健康指数系统</title>
+    <link rel="icon" href="/logo.svg" type="image/x-icon" />
+    <script>
+      // 禁用ie内核浏览器
+      function isBrowser() {
+        //检测浏览器内核--返回的是两个key，name：浏览器内核的名称---version：浏览器的版本号
+        var _browser = {};
+        var sUserAgent = navigator.userAgent;
+        var isOpera = sUserAgent.indexOf("Opera") > -1;
+        if (isOpera) {
+          //首先检测Opera是否进行了伪装
+          if (navigator.appName == "Opera") {
+            //如果没有进行伪装，则直接后去版本号
+            _browser.version = parseFloat(navigator.appVersion);
+          } else {
+            var reOperaVersion = new RegExp("Opera (\\d+.\\d+)");
+            //使用正则表达式的test方法测试并将版本号保存在RegExp.$1中
+            reOperaVersion.test(sUserAgent);
+            _browser.version = parseFloat(RegExp["$1"]);
+          }
+          _browser.opera = true;
+          _browser.name = "opera";
+        }
+        var isChrome = sUserAgent.indexOf("Chrome") > -1;
+        if (isChrome) {
+          var reChrome = new RegExp("Chrome/(\\d+\\.\\d+(?:\\.\\d+\\.\\d+))?");
+          reChrome.test(sUserAgent);
+          _browser.version = parseFloat(RegExp["$1"]);
+          _browser.chrome = true;
+          _browser.name = "chrome";
+        }
+        //排除Chrome信息，因为在Chrome的user-agent字符串中会出现Konqueror/Safari的关键字
+        var isKHTML =
+          (sUserAgent.indexOf("KHTML") > -1 ||
+            sUserAgent.indexOf("Konqueror") > -1 ||
+            sUserAgent.indexOf("AppleWebKit") > -1) &&
+          !isChrome;
+        if (isKHTML) {
+          //判断是否基于KHTML，如果时的话在继续判断属于何种KHTML浏览器
+          var isSafari = sUserAgent.indexOf("AppleWebKit") > -1;
+          var isKonq = sUserAgent.indexOf("Konqueror") > -1;
+          if (isSafari) {
+            var reAppleWebKit = new RegExp("Version/(\\d+(?:\\.\\d*)?)");
+            reAppleWebKit.test(sUserAgent);
+            var fAppleWebKitVersion = parseFloat(RegExp["$1"]);
+            _browser.version = parseFloat(RegExp["$1"]);
+            _browser.safari = true;
+            _browser.name = "safari";
+          } else if (isKonq) {
+            var reKong = new RegExp("Konqueror/(\\d+(?:\\.\\d+(?\\.\\d)?)?)");
+            reKong.test(sUserAgent);
+            _browser.version = parseFloat(RegExp["$1"]);
+            _browser.konqueror = true;
+            _browser.name = "konqueror";
+          }
+        }
+        // !isOpera 避免是由Opera伪装成的IE
+        var isIE =
+          sUserAgent.indexOf("compatible") > -1 &&
+          sUserAgent.indexOf("MSIE") > -1 &&
+          !isOpera;
+        if (isIE) {
+          var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+          reIE.test(sUserAgent);
+          _browser.version = parseFloat(RegExp["$1"]);
+          _browser.msie = true;
+          _browser.name = "msie";
+        }
+        // 排除Chrome 及 Konqueror/Safari 的伪装
+        var isMoz = sUserAgent.indexOf("Gecko") > -1 && !isChrome && !isKHTML;
+        if (isMoz) {
+          var reMoz = new RegExp("rv:(\\d+\\.\\d+(?:\\.\\d+)?)");
+          reMoz.test(sUserAgent);
+          _browser.version = parseFloat(RegExp["$1"]);
+          _browser.mozilla = true;
+          _browser.name = "mozilla";
+        }
+        return _browser;
+      }
+      if (
+        (isBrowser().name === "mozilla" &&
+          !window.ActiveXObject === true &&
+          isBrowser().version === 11) ||
+        isBrowser().name === "msie"
+      ) {
+        window.alert(
+          "不支持当前浏览器或者该浏览器版本过低,请先升级浏览器或者更换浏览器,谢谢!"
+        );
+      }
+    </script>
+    <link rel="stylesheet" href="/umi.dc5fdf84.css" />
+    <script>
+      window.routerBase = "/";
+    </script>
+    <script>
+      //! umi version: 3.5.8
+    </script>
+  </head>
+
+  <body>
+    <noscript>JavaScript被禁用,请开启以正常访问网页</noscript>
+    <div id="root">
+      <style>
+        html,
+        body,
+        #root {
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+
+        #root {
+          background-repeat: no-repeat;
+          background-size: 100% auto;
+        }
+
+        .page-loading-warp {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 98px;
+        }
+
+        .ant-spin {
+          position: absolute;
+          display: none;
+          -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+          color: rgba(0, 0, 0, 0.65);
+          color: #1890ff;
+          font-size: 14px;
+          font-variant: tabular-nums;
+          line-height: 1.5;
+          text-align: center;
+          list-style: none;
+          opacity: 0;
+          -webkit-transition: -webkit-transform 0.3s
+            cubic-bezier(0.78, 0.14, 0.15, 0.86);
+          transition: -webkit-transform 0.3s
+            cubic-bezier(0.78, 0.14, 0.15, 0.86);
+          transition: transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+          transition: transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86),
+            -webkit-transform 0.3s cubic-bezier(0.78, 0.14, 0.15, 0.86);
+          -webkit-font-feature-settings: "tnum";
+          font-feature-settings: "tnum";
+        }
+
+        .ant-spin-spinning {
+          position: static;
+          display: inline-block;
+          opacity: 1;
+        }
+
+        .ant-spin-dot {
+          position: relative;
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          font-size: 20px;
+        }
+
+        .ant-spin-dot-item {
+          position: absolute;
+          display: block;
+          width: 9px;
+          height: 9px;
+          background-color: #1890ff;
+          border-radius: 100%;
+          -webkit-transform: scale(0.75);
+          -ms-transform: scale(0.75);
+          transform: scale(0.75);
+          -webkit-transform-origin: 50% 50%;
+          -ms-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
+          opacity: 0.3;
+          -webkit-animation: antspinmove 1s infinite linear alternate;
+          animation: antSpinMove 1s infinite linear alternate;
+        }
+
+        .ant-spin-dot-item:nth-child(1) {
+          top: 0;
+          left: 0;
+        }
+
+        .ant-spin-dot-item:nth-child(2) {
+          top: 0;
+          right: 0;
+          -webkit-animation-delay: 0.4s;
+          animation-delay: 0.4s;
+        }
+
+        .ant-spin-dot-item:nth-child(3) {
+          right: 0;
+          bottom: 0;
+          -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
+        }
+
+        .ant-spin-dot-item:nth-child(4) {
+          bottom: 0;
+          left: 0;
+          -webkit-animation-delay: 1.2s;
+          animation-delay: 1.2s;
+        }
+
+        .ant-spin-dot-spin {
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+          -webkit-animation: antrotate 1.2s infinite linear;
+          animation: antRotate 1.2s infinite linear;
+        }
+
+        .ant-spin-lg .ant-spin-dot {
+          width: 32px;
+          height: 32px;
+          font-size: 32px;
+        }
+
+        .ant-spin-lg .ant-spin-dot i {
+          width: 14px;
+          height: 14px;
+        }
+
+        @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+          .ant-spin-blur {
+            background: #fff;
+            opacity: 0.5;
+          }
+        }
+
+        @-webkit-keyframes antSpinMove {
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes antSpinMove {
+          to {
+            opacity: 1;
+          }
+        }
+
+        @-webkit-keyframes antRotate {
+          to {
+            -webkit-transform: rotate(405deg);
+            transform: rotate(405deg);
+          }
+        }
+
+        @keyframes antRotate {
+          to {
+            -webkit-transform: rotate(405deg);
+            transform: rotate(405deg);
+          }
+        }
+      </style>
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          min-height: 420px;
+        "
+      >
+        <img src="/logo.svg" alt="logo" width="256" />
+        <div class="page-loading-warp">
+          <div class="ant-spin ant-spin-lg ant-spin-spinning">
+            <span class="ant-spin-dot ant-spin-dot-spin"
+              ><i class="ant-spin-dot-item"></i><i class="ant-spin-dot-item"></i
+              ><i class="ant-spin-dot-item"></i><i class="ant-spin-dot-item"></i
+            ></span>
+          </div>
+        </div>
+        <div
+          style="display: flex; align-items: center; justify-content: center"
+        >
+          <img src="/logo.svg" width="32" style="margin-right: 8px" />
+          上海外服健康指数系统
+        </div>
+      </div>
+    </div>
+
+    <script src="/umi.fc0ef535.js"></script>
+  </body>
+</html>

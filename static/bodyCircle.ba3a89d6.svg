@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="262.694" height="239.127" viewBox="0 0 262.694 239.127">
+  <defs>
+    <style>
+      .cls-1, .cls-3 {
+        fill: none;
+      }
+
+      .cls-1 {
+        stroke: #e3eafd;
+        stroke-linecap: round;
+        stroke-width: 3px;
+        stroke-dasharray: 8;
+        opacity: 0.998;
+      }
+
+      .cls-2 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="组_4308" data-name="组 4308" transform="translate(2.12 2.12)">
+    <g id="椭圆_61" data-name="椭圆 61" class="cls-1" transform="translate(22.454 5.351)">
+      <ellipse class="cls-2" cx="107.5" cy="108.5" rx="107.5" ry="108.5"/>
+      <ellipse class="cls-3" cx="107.5" cy="108.5" rx="106" ry="107"/>
+    </g>
+    <path id="路径_2080" data-name="路径 2080" class="cls-1" d="M0,46.944,50.908,0" transform="translate(5.179 187.943)"/>
+    <line id="直线_182" data-name="直线 182" class="cls-1" x1="45.579" y1="42.471"/>
+    <line id="直线_185" data-name="直线 185" class="cls-1" y1="42.471" x2="45.579" transform="translate(212.875)"/>
+    <line id="直线_183" data-name="直线 183" class="cls-1" x2="20.718" transform="translate(2.072 113.689)"/>
+    <line id="直线_184" data-name="直线 184" class="cls-1" x2="20.718" transform="translate(236.874 113.689)"/>
+    <path id="路径_2081" data-name="路径 2081" class="cls-1" d="M50.908,46.944,0,0" transform="translate(206.684 187.943)"/>
+  </g>
+</svg>
